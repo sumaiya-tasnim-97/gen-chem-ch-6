@@ -1,1 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gen Chem I · Chapter 6 — Thermochemistry · Solved Practice</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+  :root{
+    --blue:#17708c; --magenta:#ce2e7a; --ink:#15323a; --paper:#fbfaf7;
+    --line:#d9e2e0; --soft:#5d7278; --box:#f1f5f4; --boxalt:#fbeef5;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,sans-serif;line-height:1.55;font-size:16.5px}
+  .wrap{max-width:860px;margin:0 auto;padding:0 22px 90px}
 
+  header.top{position:sticky;top:0;z-index:20;background:rgba(251,250,247,.94);
+    backdrop-filter:blur(6px);border-bottom:1px solid var(--line);margin-bottom:8px}
+  .top .row{max-width:860px;margin:0 auto;padding:11px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .brand{font-weight:600;letter-spacing:.01em}
+  .brand b{color:var(--blue)}
+  .top .spacer{flex:1}
+  .tbtn{font-family:"IBM Plex Sans";font-size:.82rem;font-weight:500;color:var(--blue);
+    background:#fff;border:1px solid var(--line);border-radius:7px;padding:6px 11px;cursor:pointer}
+  .tbtn:hover{border-color:var(--blue)}
+  .tbtn.primary{background:var(--blue);color:#fff;border-color:var(--blue)}
+  .tbtn.primary:hover{background:#12596f}
+
+  .hero{padding:34px 0 10px;border-bottom:2px solid var(--ink);margin-bottom:26px}
+  .kicker{font-family:"IBM Plex Mono";font-size:.73rem;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta);margin-bottom:12px}
+  .kicker .dot{display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--magenta);margin:0 8px;vertical-align:middle}
+  h1{font-family:"IBM Plex Serif";font-weight:600;font-size:2.15rem;line-height:1.1;margin:.1em 0 .3em}
+  h1 em{color:var(--magenta);font-style:italic}
+  .lede{font-size:1.06rem;color:#30484f;max-width:62ch}
+  .meta{font-family:"IBM Plex Mono";font-size:.8rem;color:#5d7278;margin-top:14px}
+
+  nav.toc{background:var(--box);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:0 0 30px}
+  nav.toc h4{margin:0 0 9px;font-size:.78rem;letter-spacing:.11em;text-transform:uppercase;color:#5d7278;font-weight:600}
+  nav.toc ol{margin:0;padding-left:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:3px 26px}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:.92rem;display:flex;justify-content:space-between;gap:10px;padding:3px 0;border-bottom:1px dotted transparent}
+  nav.toc a:hover{color:var(--blue);border-bottom-color:var(--line)}
+  nav.toc a span:last-child{font-family:"IBM Plex Mono";font-size:.78rem;color:#9aacab}
+
+  section.sec{margin:38px 0 10px}
+  .sec-head{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:4px}
+  .sec-head h2{font-family:"IBM Plex Serif";font-weight:600;font-size:1.4rem;margin:0}
+  .sec-head .tag{font-family:"IBM Plex Mono";font-size:.72rem;color:#fff;background:var(--blue);padding:3px 9px;border-radius:20px;white-space:nowrap}
+  .sec-blurb{color:#46606a;font-size:.96rem;margin:10px 0 6px}
+  .formula{font-family:"IBM Plex Mono";background:#eef4f3;border-left:3px solid var(--blue);
+    padding:9px 13px;border-radius:0 7px 7px 0;margin:12px 0;font-size:.95rem;overflow-x:auto}
+
+  .q{border:1px solid var(--line);border-radius:13px;padding:17px 19px;margin:16px 0;background:#fff;
+    box-shadow:0 1px 2px rgba(21,50,58,.03)}
+  .q .qnum{font-family:"IBM Plex Mono";font-size:.76rem;font-weight:500;color:var(--magenta);letter-spacing:.06em}
+  .q .qbody{margin:5px 0 0;font-size:1rem}
+  .q .qbody .chem{font-family:"IBM Plex Mono";font-size:.93em;background:#f4f6f5;padding:1px 4px;border-radius:4px}
+  .rxn{font-family:"IBM Plex Mono";font-size:.92rem;background:#f6f8f7;border:1px solid var(--line);border-radius:7px;padding:8px 11px;margin:9px 0;overflow-x:auto;white-space:pre-wrap;line-height:1.7}
+  .given{font-size:.9rem;color:#50686f;margin:7px 0 0}
+
+  .reveal{margin-top:13px;display:flex;flex-direction:column;gap:0}
+  .btnrow{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+  .showbtn{font-family:"IBM Plex Sans";font-size:.86rem;font-weight:600;color:#fff;background:var(--blue);
+    border:none;border-radius:8px;padding:8px 15px;cursor:pointer;transition:background .15s}
+  .showbtn:hover{background:#12596f}
+  .rerollbtn{font-family:"IBM Plex Sans";font-size:.82rem;font-weight:500;color:var(--magenta);
+    background:#fff;border:1px solid #f0cbe0;border-radius:8px;padding:8px 13px;cursor:pointer}
+  .rerollbtn:hover{background:var(--boxalt)}
+  .sol{margin-top:13px;border-top:1px dashed var(--line);padding-top:13px;display:none}
+  .sol.open{display:block;animation:fade .25s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(-3px)}to{opacity:1;transform:none}}
+  .sol h5{margin:0 0 7px;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--magenta);font-weight:600}
+  .sol .step{margin:0 0 9px;font-size:.96rem}
+  .sol .step b{color:var(--ink)}
+  .sol .math{font-family:"IBM Plex Mono";font-size:.9rem;background:#f6f8f7;padding:6px 10px;border-radius:6px;margin:5px 0;display:block;overflow-x:auto}
+  .ans{display:inline-block;font-family:"IBM Plex Mono";font-weight:500;background:var(--boxalt);
+    border:1px solid #f0cbe0;color:#a81e63;padding:6px 12px;border-radius:8px;margin-top:4px;font-size:.96rem}
+  .note{font-size:.86rem;color:#5d7278;font-style:italic;margin-top:8px}
+
+  table.hf{width:100%;border-collapse:collapse;font-size:.86rem;margin:8px 0 2px}
+  table.hf th,table.hf td{text-align:left;padding:5px 9px;border-bottom:1px solid var(--line)}
+  table.hf th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:#5d7278;font-weight:600}
+  table.hf td.n{font-family:"IBM Plex Mono";text-align:right}
+  table.hf td.f{font-family:"IBM Plex Mono"}
+
+  footer{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);font-size:.82rem;color:#7a8e8c;font-family:"IBM Plex Mono"}
+  sub{font-size:.76em}sup{font-size:.76em}
+  @media(max-width:680px){nav.toc ol{grid-template-columns:1fr}h1{font-size:1.75rem}}
+  @media print{
+    header.top,.showbtn,.rerollbtn,.tbtn{display:none!important}
+    .sol{display:block!important}.q{break-inside:avoid;box-shadow:none}
+    body{font-size:11.5pt}.wrap{max-width:100%}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="row">
+    <div class="brand">Duquesne <b>Gen Chem I</b> &middot; Ch 6 Thermochemistry</div>
+    <div class="spacer"></div>
+    <button class="tbtn primary" id="newAll">&#8635; New numbers</button>
+    <button class="tbtn" id="openAll">Show all</button>
+    <button class="tbtn" id="closeAll">Hide all</button>
+    <button class="tbtn" id="printBtn">Print / PDF</button>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="kicker">General Chemistry I <span class="dot"></span> Solved Practice Set</div>
+    <h1>Chapter 6 — <em>Thermochemistry</em></h1>
+    <p class="lede">Twenty worked problems spanning the whole chapter: the first law and sign conventions, pressure&ndash;volume work, enthalpy and stoichiometry, calorimetry (coffee-cup &amp; bomb), Hess&rsquo;s law, and standard enthalpies of formation. Every problem draws <b>fresh numbers</b> and re-solves itself &mdash; press <b>&#8635; New numbers</b> (top) for a whole new set, or <b>&#8635; new numbers</b> on any single problem.</p>
+    <p class="meta">Burdge &amp; Overby, Chemistry (5th ed.) &middot; &sect;6.1&ndash;6.6 &middot; constants: 1 L&middot;atm = 101.325 J &middot; c<sub>water</sub> = 4.18 J/g&middot;K</p>
+  </div>
+
+  <nav class="toc">
+    <h4>Jump to a topic</h4>
+    <ol>
+      <li><a href="#A"><span>A &middot; First law &amp; sign conventions</span><span>1&ndash;3</span></a></li>
+      <li><a href="#B"><span>B &middot; Pressure&ndash;volume work</span><span>4&ndash;6</span></a></li>
+      <li><a href="#C"><span>C &middot; Enthalpy &amp; stoichiometry</span><span>7&ndash;9</span></a></li>
+      <li><a href="#D"><span>D &middot; Calorimetry</span><span>10&ndash;15</span></a></li>
+      <li><a href="#E"><span>E &middot; Hess&rsquo;s law</span><span>16&ndash;17</span></a></li>
+      <li><a href="#F"><span>F &middot; Enthalpies of formation</span><span>18&ndash;20</span></a></li>
+    </ol>
+  </nav>
+
+  <section class="sec" id="A">
+    <div class="sec-head"><h2>A. First Law &amp; Sign Conventions</h2><span class="tag">&sect;6.3</span></div>
+    <p class="sec-blurb">The first law of thermodynamics: the change in a system&rsquo;s internal energy is the heat plus the work.</p>
+    <div class="formula">&Delta;E = q + w &nbsp;&nbsp;|&nbsp;&nbsp; q &gt; 0 heat <b>into</b> system &nbsp;&middot;&nbsp; w &gt; 0 work done <b>on</b> system</div>
+    <div class="q" data-i="0"></div>
+    <div class="q" data-i="1"></div>
+    <div class="q" data-i="2"></div>
+  </section>
+
+  <section class="sec" id="B">
+    <div class="sec-head"><h2>B. Pressure&ndash;Volume Work</h2><span class="tag">&sect;6.3</span></div>
+    <p class="sec-blurb">When a gas expands or is compressed against a constant external pressure, the work is &minus;P&Delta;V. Convert L&middot;atm to joules with 1 L&middot;atm = 101.325 J.</p>
+    <div class="formula">w = &minus;P&Delta;V &nbsp;&nbsp; &Delta;V = V<sub>final</sub> &minus; V<sub>initial</sub></div>
+    <div class="q" data-i="3"></div>
+    <div class="q" data-i="4"></div>
+    <div class="q" data-i="5"></div>
+  </section>
+
+  <section class="sec" id="C">
+    <div class="sec-head"><h2>C. Enthalpy &amp; Stoichiometry</h2><span class="tag">&sect;6.4</span></div>
+    <p class="sec-blurb">&Delta;H is the heat at constant pressure, and it is <i>extensive</i> &mdash; it scales with the amount reacting. Convert mass &rarr; moles, then use the reaction&rsquo;s &Delta;H as a conversion factor.</p>
+    <div class="q" data-i="6"></div>
+    <div class="q" data-i="7"></div>
+    <div class="q" data-i="8"></div>
+  </section>
+
+  <section class="sec" id="D">
+    <div class="sec-head"><h2>D. Calorimetry</h2><span class="tag">&sect;6.5</span></div>
+    <p class="sec-blurb">Heat and temperature change are linked by q = mc&Delta;T. In a calorimeter, the heat released by the reaction is absorbed by the surroundings: q<sub>rxn</sub> = &minus;q<sub>surroundings</sub>.</p>
+    <div class="formula">q = m c &Delta;T &nbsp;&nbsp;|&nbsp;&nbsp; coffee-cup: q<sub>rxn</sub> = &minus;q<sub>soln</sub> &nbsp;&middot;&nbsp; bomb: q<sub>rxn</sub> = &minus;C<sub>cal</sub>&Delta;T</div>
+    <div class="q" data-i="9"></div>
+    <div class="q" data-i="10"></div>
+    <div class="q" data-i="11"></div>
+    <div class="q" data-i="12"></div>
+    <div class="q" data-i="13"></div>
+    <div class="q" data-i="14"></div>
+  </section>
+
+  <section class="sec" id="E">
+    <div class="sec-head"><h2>E. Hess&rsquo;s Law</h2><span class="tag">&sect;6.6</span></div>
+    <p class="sec-blurb">Enthalpy is a state function, so &Delta;H is the same whether a reaction happens in one step or many. Work <i>backward</i> from the target: reverse reactions (flip the sign) and multiply (scale &Delta;H) until they add up to the target.</p>
+    <div class="q" data-i="15"></div>
+    <div class="q" data-i="16"></div>
+  </section>
+
+  <section class="sec" id="F">
+    <div class="sec-head"><h2>F. Standard Enthalpies of Formation</h2><span class="tag">&sect;6.6</span></div>
+    <p class="sec-blurb">The enthalpy of reaction equals the formation enthalpies of the products minus those of the reactants (each &times; its coefficient). Elements in their standard states have &Delta;H&deg;<sub>f</sub> = 0.</p>
+    <div class="formula">&Delta;H&deg;<sub>rxn</sub> = &Sigma; n &Delta;H&deg;<sub>f</sub>(products) &minus; &Sigma; m &Delta;H&deg;<sub>f</sub>(reactants)</div>
+    <table class="hf">
+      <tr><th>Substance</th><th>&Delta;H&deg;<sub>f</sub> (kJ/mol)</th><th>Substance</th><th>&Delta;H&deg;<sub>f</sub> (kJ/mol)</th></tr>
+      <tr><td class="f">CO&#8322;(g)</td><td class="n">&minus;393.5</td><td class="f">C&#8322;H&#8325;OH(l)</td><td class="n">&minus;277.7</td></tr>
+      <tr><td class="f">H&#8322;O(l)</td><td class="n">&minus;285.8</td><td class="f">C&#8322;H&#8326;(g)</td><td class="n">&minus;84.68</td></tr>
+      <tr><td class="f">CH&#8324;(g)</td><td class="n">&minus;74.8</td><td class="f">C&#8323;H&#8328;(g)</td><td class="n">&minus;103.85</td></tr>
+      <tr><td class="f">C&#8326;H&#8326;(l)</td><td class="n">+49.0</td><td class="f">CaO(s)</td><td class="n">&minus;635.5</td></tr>
+      <tr><td class="f">O&#8322;(g), elements</td><td class="n">0</td><td class="f"></td><td class="n"></td></tr>
+    </table>
+    <div class="q" data-i="17"></div>
+    <div class="q" data-i="18"></div>
+    <div class="q" data-i="19"></div>
+  </section>
+
+  <footer>
+    Duquesne University &middot; General Chemistry I &middot; Chapter 6 Thermochemistry &middot; 20 solved practice problems with randomized values.<br>
+    All problems are original, in the style of the chapter&rsquo;s worked examples; every solution recomputes from its own numbers.
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var LATM=101.325, cW=4.18;
+  function ri(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
+  function pick(a){return a[Math.floor(Math.random()*a.length)];}
+  // minus-aware fixed decimals
+  function mm(x,d){return (x<0?"−":"")+Math.abs(x).toFixed(d);}
+  // signed (+/-) fixed decimals
+  function pm(x,d){return (x<0?"−":"+")+Math.abs(x).toFixed(d);}
+  // significant-figure string, minus-aware
+  function sf(x,s){
+    if(x===0)return "0";
+    var neg=x<0, a=Math.abs(x);
+    var d=Math.floor(Math.log10(a))+1;
+    var p=s-d, m=Math.pow(10,p);
+    var r=Math.round(a*m)/m;
+    var dec=Math.max(0,p);
+    return (neg?"−":"")+r.toFixed(Math.min(dec,6));
+  }
+
+  // ---------- generators: each returns {label, body, extra, steps[], ans, note} ----------
+  var GENS=[
+    // 1 · ΔE from heat released + work on system
+    function(){var q=ri(150,400),w=ri(50,200),dE=-q+w;return{
+      label:"first law",
+      body:"A system releases <b>"+q+" J</b> of heat to its surroundings, and the surroundings do <b>"+w+" J</b> of work on the system. Calculate &Delta;E for the system.",
+      extra:"",
+      steps:[
+        "<p class='step'><b>Assign signs.</b> Heat is released by the system &rarr; q &lt; 0. Work is done on the system &rarr; w &gt; 0.</p>",
+        "<span class='math'>q = −"+q+" J    w = +"+w+" J</span>",
+        "<p class='step'><b>Apply the first law.</b></p>",
+        "<span class='math'>&Delta;E = q + w = (−"+q+") + (+"+w+") = "+mm(dE,0)+" J</span>"],
+      ans:"&Delta;E = "+mm(dE,0)+" J",
+      note:(dE<0?"Negative &Delta;E: the internal energy decreased overall.":"Positive &Delta;E: the internal energy increased overall.")};},
+
+    // 2 · gas absorbs heat, does work on surroundings
+    function(){var q=ri(200,500),w=ri(80,250),dE=q-w;return{
+      label:"first law",
+      body:"A gas <b>absorbs "+q+" J</b> of heat and expands, doing <b>"+w+" J</b> of work on the surroundings. What is &Delta;E?",
+      extra:"",
+      steps:[
+        "<p class='step'><b>Assign signs.</b> Heat absorbed &rarr; q &gt; 0. The gas does work on the surroundings &rarr; w &lt; 0.</p>",
+        "<span class='math'>q = +"+q+" J    w = −"+w+" J</span>",
+        "<p class='step'><b>First law.</b></p>",
+        "<span class='math'>&Delta;E = (+"+q+") + (−"+w+") = "+mm(dE,0)+" J</span>"],
+      ans:"&Delta;E = "+mm(dE,0)+" J",
+      note:""};},
+
+    // 3 · ΔE decreases, system does work, find q
+    function(){var dE=-ri(300,600),w=-ri(100,300),q=dE-w;return{
+      label:"first law",
+      body:"During a reaction, the internal energy of the system <b>decreases by "+Math.abs(dE)+" J</b> while the system does <b>"+Math.abs(w)+" J of work</b> on the surroundings. How much heat is exchanged, and in which direction?",
+      extra:"",
+      steps:[
+        "<p class='step'><b>Knowns.</b> &Delta;E = "+mm(dE,0)+" J (decreases); work done on the surroundings &rarr; w = "+mm(w,0)+" J.</p>",
+        "<p class='step'><b>Solve the first law for q.</b></p>",
+        "<span class='math'>q = &Delta;E − w = ("+mm(dE,0)+") − ("+mm(w,0)+") = "+mm(q,0)+" J</span>"],
+      ans:"q = "+mm(q,0)+" J ("+Math.abs(q)+" J "+(q<0?"released to":"absorbed from")+" the surroundings)",
+      note:(q<0?"q &lt; 0 &rarr; the process is exothermic.":"q &gt; 0 &rarr; the process is endothermic.")};},
+
+    // 4 · expansion work
+    function(){var P=pick([1.0,1.5,2.0,2.5]),Vi=ri(10,30)/10,Vf=Vi+ri(30,55)/10,dV=Vf-Vi,wl=-P*dV,wj=wl*LATM;return{
+      label:"",
+      body:"A gas expands from <b>"+Vi.toFixed(1)+" L to "+Vf.toFixed(1)+" L</b> against a constant external pressure of <b>"+P.toFixed(1)+" atm</b>. Calculate the work in joules.",
+      extra:"",
+      steps:[
+        "<span class='math'>&Delta;V = "+Vf.toFixed(1)+" − "+Vi.toFixed(1)+" = "+dV.toFixed(1)+" L</span>",
+        "<span class='math'>w = −P&Delta;V = −("+P.toFixed(1)+" atm)("+dV.toFixed(1)+" L) = "+mm(wl,2)+" L&middot;atm</span>",
+        "<p class='step'><b>Convert to joules.</b></p>",
+        "<span class='math'>w = "+mm(wl,2)+" L&middot;atm &times; 101.325 J/L&middot;atm = "+sf(wj,3)+" J</span>"],
+      ans:"w = "+sf(wj,3)+" J",
+      note:"Negative: the expanding gas does work on the surroundings."};},
+
+    // 5 · compression (cooling)
+    function(){var P=pick([1.00,1.50,2.00]),Vi=ri(140,220)/10,Vf=Vi-ri(25,60)/10,dV=Vf-Vi,wl=-P*dV,wj=wl*LATM;return{
+      label:"",
+      body:"A gas is cooled at a constant pressure of <b>"+P.toFixed(2)+" atm</b>; its volume decreases from <b>"+Vi.toFixed(1)+" L to "+Vf.toFixed(1)+" L</b>. Calculate the work (J) and state its direction.",
+      extra:"",
+      steps:[
+        "<span class='math'>&Delta;V = "+Vf.toFixed(1)+" − "+Vi.toFixed(1)+" = "+dV.toFixed(1)+" L</span>",
+        "<span class='math'>w = −("+P.toFixed(2)+" atm)("+dV.toFixed(1)+" L) = +"+Math.abs(wl).toFixed(2)+" L&middot;atm</span>",
+        "<span class='math'>w = +"+Math.abs(wl).toFixed(2)+" &times; 101.325 = +"+sf(Math.abs(wj),3)+" J</span>"],
+      ans:"w = +"+sf(Math.abs(wj),3)+" J (work done on the gas)",
+      note:"Compression &rarr; positive work on the system, as the sign convention predicts."};},
+
+    // 6 · which does more work
+    function(){
+      var Pa=pick([1.0,2.0,2.5,3.0]),V1a=ri(10,20)/10,V2a=V1a+ri(25,45)/10;
+      var Pb=pick([1.0,2.0,2.5,3.0,4.0]),V1b=ri(10,20)/10,V2b=V1b+ri(15,35)/10;
+      var wa=-Pa*(V2a-V1a),wb=-Pb*(V2b-V1b);
+      var eq=Math.abs(Math.abs(wa)-Math.abs(wb))<0.05;
+      var more=eq?"equal":(Math.abs(wa)>Math.abs(wb)?"(a)":"(b)");
+      return{
+      label:"",
+      body:"Which process performs <b>more</b> work on the surroundings?<br>(a) a gas expanding against <b>"+Pa.toFixed(1)+" atm</b> from "+V1a.toFixed(1)+" L to "+V2a.toFixed(1)+" L, or<br>(b) a gas expanding against <b>"+Pb.toFixed(1)+" atm</b> from "+V1b.toFixed(1)+" L to "+V2b.toFixed(1)+" L?",
+      extra:"",
+      steps:[
+        "<span class='math'>(a) w = −("+Pa.toFixed(1)+")("+V2a.toFixed(1)+" − "+V1a.toFixed(1)+") = "+mm(wa,2)+" L&middot;atm</span>",
+        "<span class='math'>(b) w = −("+Pb.toFixed(1)+")("+V2b.toFixed(1)+" − "+V1b.toFixed(1)+") = "+mm(wb,2)+" L&middot;atm</span>",
+        "<p class='step'>Compare magnitudes: "+(eq?"they are equal":"| "+mm(wa,2)+" | vs | "+mm(wb,2)+" | &rarr; "+more+" is larger")+".</p>"],
+      ans:(eq?"They perform the same work ("+Math.abs(wa).toFixed(2)+" L&middot;atm each)":more+" performs more work ("+sf(Math.abs(more==="(a)"?wa:wb)*1,3)+" L&middot;atm)"),
+      note:"It is the product P&Delta;V that matters — a larger pressure over a smaller volume change can match a smaller pressure over a larger one."};},
+
+    // 7 · methane combustion heat from grams
+    function(){var m=ri(200,1000)/100,mol=m/16.04,q=mol*(-890);return{
+      label:"",
+      body:"How much heat is released when <b>"+m.toFixed(2)+" g</b> of methane burns at constant pressure?",
+      extra:"<div class='rxn'>CH&#8324;(g) + 2 O&#8322;(g) &rarr; CO&#8322;(g) + 2 H&#8322;O(l)      &Delta;H = &minus;890 kJ</div>",
+      steps:[
+        "<p class='step'><b>Mass &rarr; moles</b> (M<sub>CH&#8324;</sub> = 16.04 g/mol).</p>",
+        "<span class='math'>n = "+m.toFixed(2)+" g &divide; 16.04 g/mol = "+sf(mol,4)+" mol</span>",
+        "<p class='step'><b>Moles &rarr; heat</b> (&minus;890 kJ per mol CH&#8324;).</p>",
+        "<span class='math'>q = "+sf(mol,4)+" mol &times; (&minus;890 kJ/mol) = "+sf(q,3)+" kJ</span>"],
+      ans:"q = "+sf(q,3)+" kJ ("+sf(-q,3)+" kJ released)",
+      note:""};},
+
+    // 8 · thermite grams Al (coefficient trap)
+    function(){var m=ri(200,800)/100,mol=m/26.98,q=mol*(-822.8/2);return{
+      label:"",
+      body:"How much heat is released in the thermite reaction when <b>"+m.toFixed(2)+" g of aluminum</b> reacts?",
+      extra:"<div class='rxn'>2 Al(s) + Fe&#8322;O&#8323;(s) &rarr; Al&#8322;O&#8323;(s) + 2 Fe(l)      &Delta;H = &minus;822.8 kJ</div>",
+      steps:[
+        "<p class='step'><b>Mass &rarr; moles Al</b> (M<sub>Al</sub> = 26.98 g/mol).</p>",
+        "<span class='math'>n = "+m.toFixed(2)+" &divide; 26.98 = "+sf(mol,4)+" mol Al</span>",
+        "<p class='step'><b>Watch the coefficient:</b> &minus;822.8 kJ per <b>2 mol</b> Al.</p>",
+        "<span class='math'>q = "+sf(mol,4)+" mol &times; (&minus;822.8 kJ / 2 mol) = "+sf(q,3)+" kJ</span>"],
+      ans:"q = "+sf(q,3)+" kJ",
+      note:"The most common error is forgetting to divide by the coefficient 2."};},
+
+    // 9 · mass of water from heat released
+    function(){var heat=ri(10,30)*50,mol=2*(heat/571.6),m=mol*18.02;return{
+      label:"",
+      body:"For the reaction below, what mass of water forms when <b>"+heat+" kJ</b> of heat is released?",
+      extra:"<div class='rxn'>2 H&#8322;(g) + O&#8322;(g) &rarr; 2 H&#8322;O(l)      &Delta;H = &minus;571.6 kJ</div>",
+      steps:[
+        "<p class='step'><b>Heat &rarr; moles water</b> (&minus;571.6 kJ per 2 mol H&#8322;O).</p>",
+        "<span class='math'>n = 2 mol &times; ("+heat+" kJ &divide; 571.6 kJ) = "+sf(mol,4)+" mol</span>",
+        "<p class='step'><b>Moles &rarr; mass</b> (M = 18.02 g/mol).</p>",
+        "<span class='math'>m = "+sf(mol,4)+" &times; 18.02 = "+sf(m,3)+" g</span>"],
+      ans:"m = "+sf(m,3)+" g H&#8322;O",
+      note:""};},
+
+    // 10 · warm water q=mcΔT
+    function(){var m=ri(2,10)*50,Ti=ri(150,300)/10,Tf=ri(700,950)/10,dT=Tf-Ti,q=m*cW*dT;return{
+      label:"",
+      body:"How much heat (kJ) is needed to warm <b>"+m+" g of water</b> from <b>"+Ti.toFixed(1)+"&deg;C to "+Tf.toFixed(1)+"&deg;C</b>? (c = 4.18 J/g&middot;K)",
+      extra:"",
+      steps:[
+        "<span class='math'>&Delta;T = "+Tf.toFixed(1)+" − "+Ti.toFixed(1)+" = "+dT.toFixed(1)+" K</span>",
+        "<span class='math'>q = mc&Delta;T = ("+m+")(4.18)("+dT.toFixed(1)+") = "+sf(q,4)+" J</span>"],
+      ans:"q = +"+sf(q/1000,3)+" kJ",
+      note:"A Celsius interval equals a Kelvin interval, so &Delta;T is the same either way."};},
+
+    // 11 · molar heat capacity
+    function(){var S=pick([["water",4.18,18.02],["ethanol",2.44,46.07],["aluminum",0.897,26.98],["iron",0.449,55.85],["copper",0.385,63.55]]);var Cm=S[1]*S[2];return{
+      label:"",
+      body:"What is the <b>molar heat capacity</b> of "+S[0]+", given its specific heat of "+S[1].toFixed(S[1]<1?3:2)+" J/g&middot;K and molar mass "+S[2].toFixed(2)+" g/mol?",
+      extra:"",
+      steps:[
+        "<p class='step'>Molar heat capacity = specific heat &times; molar mass.</p>",
+        "<span class='math'>C<sub>m</sub> = "+S[1].toFixed(S[1]<1?3:2)+" J/g&middot;K &times; "+S[2].toFixed(2)+" g/mol = "+sf(Cm,3)+" J/mol&middot;K</span>"],
+      ans:"C<sub>m</sub> = "+sf(Cm,3)+" J/mol&middot;K",
+      note:""};},
+
+    // 12 · coffee-cup neutralization
+    function(){var M=pick([0.50,1.0,1.5,2.0]),Ti=ri(190,225)/10,dT=ri(50,90)/10,Tf=Ti+dT,mol=0.050*M,q=100*cW*dT,dH=-(q/1000)/mol;return{
+      label:"coffee-cup",
+      body:"A student mixes <b>50.0 mL of "+M.toFixed(1)+" M HCl</b> with <b>50.0 mL of "+M.toFixed(1)+" M NaOH</b> in a coffee-cup calorimeter. The temperature rises from <b>"+Ti.toFixed(1)+"&deg;C to "+Tf.toFixed(1)+"&deg;C</b>. Assuming 100.0 mL of solution, density 1.00 g/mL, and c = 4.18 J/g&middot;K, calculate &Delta;H per mole of water formed.",
+      extra:"",
+      steps:[
+        "<p class='step'><b>Heat absorbed by the solution.</b> mass = 100.0 g; &Delta;T = "+dT.toFixed(1)+" &deg;C.</p>",
+        "<span class='math'>q<sub>soln</sub> = (100.0)(4.18)("+dT.toFixed(1)+") = "+sf(q,4)+" J = "+pm(q/1000,2)+" kJ</span>",
+        "<p class='step'><b>Heat of reaction</b> is the opposite.</p>",
+        "<span class='math'>q<sub>rxn</sub> = "+mm(-q/1000,2)+" kJ</span>",
+        "<p class='step'><b>Moles of water</b> = 0.0500 L &times; "+M.toFixed(1)+" M = "+mol.toFixed(3)+" mol (1:1).</p>",
+        "<span class='math'>&Delta;H = "+mm(-q/1000,2)+" kJ &divide; "+mol.toFixed(3)+" mol = "+sf(dH,3)+" kJ/mol</span>"],
+      ans:"&Delta;H = "+sf(dH,3)+" kJ/mol H&#8322;O",
+      note:"Exothermic, as expected for a strong acid–base neutralization."};},
+
+    // 13 · bomb calorimetry
+    function(){var m=ri(800,1600)/1000,Ccal=pick([3.95,4.20,4.90,5.15]),Ti=ri(2200,2400)/100,dT=ri(300,600)/100,Tf=Ti+dT,qcal=Ccal*dT,perg=-qcal/m,perm=perg*180.16;return{
+      label:"bomb",
+      body:"A <b>"+m.toFixed(3)+" g</b> sample of glucose (C&#8326;H&#8321;&#8322;O&#8326;, M = 180.16 g/mol) is burned in a bomb calorimeter whose heat capacity is <b>"+Ccal.toFixed(2)+" kJ/&deg;C</b>. The temperature rises from <b>"+Ti.toFixed(2)+"&deg;C to "+Tf.toFixed(2)+"&deg;C</b>. Calculate the heat of combustion per gram and per mole.",
+      extra:"",
+      steps:[
+        "<span class='math'>&Delta;T = "+Tf.toFixed(2)+" − "+Ti.toFixed(2)+" = "+dT.toFixed(2)+" &deg;C</span>",
+        "<p class='step'><b>Heat absorbed by the calorimeter.</b></p>",
+        "<span class='math'>q<sub>cal</sub> = C<sub>cal</sub>&Delta;T = ("+Ccal.toFixed(2)+")("+dT.toFixed(2)+") = "+sf(qcal,4)+" kJ</span>",
+        "<p class='step'><b>Combustion heat</b> is the opposite, then divide by amount.</p>",
+        "<span class='math'>per gram: "+mm(-qcal,4)+" kJ &divide; "+m.toFixed(3)+" g = "+sf(perg,3)+" kJ/g</span>",
+        "<span class='math'>per mole: "+sf(perg,3)+" kJ/g &times; 180.16 g/mol = "+sf(perm,4)+" kJ/mol</span>"],
+      ans:sf(perg,3)+" kJ/g · "+sf(perm,4)+" kJ/mol",
+      note:""};},
+
+    // 14 · final temperature, metal into water
+    function(){var M=pick([["copper",0.385],["iron",0.449],["aluminum",0.897],["silver",0.235],["lead",0.128]]);
+      var mM=ri(40,90),Th=ri(850,1000)/10,mW=ri(100,200),Tw=ri(180,250)/10,cM=M[1];
+      var Tf=(mM*cM*Th+mW*cW*Tw)/(mM*cM+mW*cW);return{
+      label:"final temperature",
+      body:"A <b>"+mM+" g</b> piece of "+M[0]+" at <b>"+Th.toFixed(1)+"&deg;C</b> is dropped into <b>"+mW+" g of water</b> at <b>"+Tw.toFixed(1)+"&deg;C</b>. Find the final temperature. (c<sub>"+M[0].slice(0,2)+"</sub> = "+cM.toFixed(3)+", c<sub>water</sub> = 4.18 J/g&middot;K; no heat lost.)",
+      extra:"",
+      steps:[
+        "<p class='step'><b>Heat lost by metal = heat gained by water.</b></p>",
+        "<span class='math'>m<sub>M</sub>c<sub>M</sub>("+Th.toFixed(1)+" − T<sub>f</sub>) = m<sub>w</sub>c<sub>w</sub>(T<sub>f</sub> − "+Tw.toFixed(1)+")</span>",
+        "<span class='math'>("+(mM*cM).toFixed(3)+")("+Th.toFixed(1)+" − T<sub>f</sub>) = ("+(mW*cW).toFixed(1)+")(T<sub>f</sub> − "+Tw.toFixed(1)+")</span>",
+        "<p class='step'><b>Solve for T<sub>f</sub>.</b></p>",
+        "<span class='math'>T<sub>f</sub> = (m<sub>M</sub>c<sub>M</sub>T<sub>M</sub> + m<sub>w</sub>c<sub>w</sub>T<sub>w</sub>) &divide; (m<sub>M</sub>c<sub>M</sub> + m<sub>w</sub>c<sub>w</sub>) = "+Tf.toFixed(1)+" &deg;C</span>"],
+      ans:"T<sub>f</sub> = "+Tf.toFixed(1)+" &deg;C",
+      note:"The final temperature sits close to the water’s start — water’s mass and high specific heat dominate."};},
+
+    // 15 · specific heat of a metal (back-computed clean Tf)
+    function(){var trueC,mM,Th,mW,Tw,TfRaw,Tf,tries=0;
+      do{trueC=pick([0.385,0.449,0.897,0.235,0.128,0.515]);
+        mM=ri(40,80),Th=ri(850,1000)/10,mW=ri(90,160),Tw=ri(180,240)/10;
+        TfRaw=(mM*trueC*Th+mW*cW*Tw)/(mM*trueC+mW*cW);Tf=Math.round(TfRaw*10)/10;tries++;
+      }while((Tf-Tw)<1.0&&tries<40);
+      var c=mW*cW*(Tf-Tw)/(mM*(Th-Tf));return{
+      label:"specific heat of a metal",
+      body:"A <b>"+mM+" g</b> metal sample at <b>"+Th.toFixed(1)+"&deg;C</b> is placed into <b>"+mW+" g of water</b> at <b>"+Tw.toFixed(1)+"&deg;C</b>. The final temperature is <b>"+Tf.toFixed(1)+"&deg;C</b>. What is the specific heat of the metal? (no heat lost)",
+      extra:"",
+      steps:[
+        "<p class='step'><b>Heat gained by water.</b></p>",
+        "<span class='math'>q<sub>w</sub> = ("+mW+")(4.18)("+Tf.toFixed(1)+" − "+Tw.toFixed(1)+") = "+sf(mW*cW*(Tf-Tw),4)+" J</span>",
+        "<p class='step'><b>Heat lost by metal = &minus;q<sub>w</sub>.</b> Metal cools from "+Th.toFixed(1)+" to "+Tf.toFixed(1)+"&deg;C (&Delta;T = "+(Th-Tf).toFixed(1)+"&deg;C).</p>",
+        "<span class='math'>("+mM+" g)(c)("+(Th-Tf).toFixed(1)+" &deg;C) = "+sf(mW*cW*(Tf-Tw),4)+" J</span>",
+        "<span class='math'>c = "+sf(mW*cW*(Tf-Tw),4)+" &divide; ("+mM+" &times; "+(Th-Tf).toFixed(1)+") = "+sf(c,3)+" J/g&middot;K</span>"],
+      ans:"c = "+sf(c,3)+" J/g&middot;K",
+      note:""};},
+
+    // 16 · Hess NO + O -> NO2
+    function(){var H1=-ri(1500,2500)/10,H2=-ri(1200,1800)/10,H3=ri(4500,5200)/10,t=H1-H2-H3/2;return{
+      label:"",
+      body:"Calculate &Delta;H for &nbsp;<span class='chem'>NO(g) + O(g) &rarr; NO&#8322;(g)</span>&nbsp; given:",
+      extra:"<div class='rxn'>(1) NO(g) + O&#8323;(g) &rarr; NO&#8322;(g) + O&#8322;(g)    &Delta;H = "+mm(H1,1)+" kJ\n(2) O&#8323;(g) &rarr; 3/2 O&#8322;(g)             &Delta;H = "+mm(H2,1)+" kJ\n(3) O&#8322;(g) &rarr; 2 O(g)               &Delta;H = "+pm(H3,1)+" kJ</div>",
+      steps:[
+        "<p class='step'><b>Keep (1)</b> — it has NO on the left, NO&#8322; on the right.</p>",
+        "<span class='math'>NO + O&#8323; &rarr; NO&#8322; + O&#8322;   &Delta;H = "+mm(H1,1)+"</span>",
+        "<p class='step'><b>Reverse (2)</b> to cancel O&#8323; (sign flips).</p>",
+        "<span class='math'>3/2 O&#8322; &rarr; O&#8323;   &Delta;H = "+mm(-H2,1)+"</span>",
+        "<p class='step'><b>Reverse and halve (3)</b> to supply one O atom.</p>",
+        "<span class='math'>O &rarr; 1/2 O&#8322;   &Delta;H = "+pm(H3,1)+" &divide; (−2) = "+mm(-H3/2,1)+"</span>",
+        "<p class='step'><b>Add</b> (O&#8323; and O&#8322; cancel).</p>",
+        "<span class='math'>&Delta;H = "+mm(H1,1)+" + "+mm(-H2,1)+" + "+mm(-H3/2,1)+" = "+mm(t,1)+" kJ</span>"],
+      ans:"&Delta;H = "+mm(t,1)+" kJ",
+      note:""};},
+
+    // 17 · Hess Fe/Si
+    function(){var H1=-ri(7500,8500)/10,H2=-ri(6000,6800)/10,t=2*H1-3*H2;return{
+      label:"",
+      body:"Using the two reactions below, determine &Delta;H for &nbsp;<span class='chem'>3 SiCl&#8324;(s) + 4 Fe(s) &rarr; 4 FeCl&#8323;(s) + 3 Si(s)</span>.",
+      extra:"<div class='rxn'>(1) 2 Fe(s) + 3 Cl&#8322;(g) &rarr; 2 FeCl&#8323;(s)   &Delta;H&deg; = "+mm(H1,1)+" kJ\n(2) Si(s) + 2 Cl&#8322;(g) &rarr; SiCl&#8324;(s)      &Delta;H&deg; = "+mm(H2,1)+" kJ</div>",
+      steps:[
+        "<p class='step'><b>Need 4 FeCl&#8323; as product</b> &rarr; multiply (1) by 2.</p>",
+        "<span class='math'>4 Fe + 6 Cl&#8322; &rarr; 4 FeCl&#8323;   &Delta;H = 2("+mm(H1,1)+") = "+mm(2*H1,1)+"</span>",
+        "<p class='step'><b>Need 3 SiCl&#8324; consumed &amp; 3 Si produced</b> &rarr; reverse (2), &times;3.</p>",
+        "<span class='math'>3 SiCl&#8324; &rarr; 3 Si + 6 Cl&#8322;   &Delta;H = 3("+mm(-H2,1)+") = "+mm(-3*H2,1)+"</span>",
+        "<p class='step'><b>Add</b> (6 Cl&#8322; cancels).</p>",
+        "<span class='math'>&Delta;H = "+mm(2*H1,1)+" + "+mm(-3*H2,1)+" = "+mm(t,1)+" kJ</span>"],
+      ans:"&Delta;H = "+mm(t,1)+" kJ",
+      note:""};},
+
+    // 18 · combustion from ΔHf (pool A)
+    function(){var F=pick([
+        ["propane","C₃H₈(g)",-103.85,"C₃H₈(g) + 5 O₂(g) → 3 CO₂(g) + 4 H₂O(l)",3,4],
+        ["benzene","C₆H₆(l)",49.0,"C₆H₆(l) + 15/2 O₂(g) → 6 CO₂(g) + 3 H₂O(l)",6,3],
+        ["ethane","C₂H₆(g)",-84.68,"C₂H₆(g) + 7/2 O₂(g) → 2 CO₂(g) + 3 H₂O(l)",2,3]]);
+      var prod=F[4]*(-393.5)+F[5]*(-285.8),dH=prod-F[2];return{
+      label:"",
+      body:"Using the table above, calculate &Delta;H&deg; for the combustion of <b>1 mole of "+F[0]+"</b>:",
+      extra:"<div class='rxn'>"+F[3]+"</div>",
+      steps:[
+        "<span class='math'>&Delta;H&deg; = [ "+F[4]+"(&minus;393.5) + "+F[5]+"(&minus;285.8) ] &minus; [ ("+mm(F[2],2)+") + 0 ]</span>",
+        "<span class='math'>= [ "+(F[4]*-393.5).toFixed(1)+" + "+(F[5]*-285.8).toFixed(1)+" ] &minus; ("+mm(F[2],2)+")</span>",
+        "<span class='math'>= "+prod.toFixed(1)+" + "+mm(-F[2],2)+" = "+sf(dH,4)+" kJ</span>"],
+      ans:"&Delta;H&deg; = "+sf(dH,4)+" kJ (per mole "+F[0]+")",
+      note:""};},
+
+    // 19 · combustion from ΔHf (pool B, distinct)
+    function(){var F=pick([
+        ["ethanol","C₂H₅OH(l)",-277.7,"C₂H₅OH(l) + 3 O₂(g) → 2 CO₂(g) + 3 H₂O(l)",2,3],
+        ["methane","CH₄(g)",-74.8,"CH₄(g) + 2 O₂(g) → CO₂(g) + 2 H₂O(l)",1,2]]);
+      var prod=F[4]*(-393.5)+F[5]*(-285.8),dH=prod-F[2];return{
+      label:"",
+      body:"Using the table above, calculate the enthalpy change for the combustion of <b>1 mole of "+F[0]+"</b>. (Balance the equation first.)",
+      extra:"<div class='rxn'>"+F[3]+"</div>",
+      steps:[
+        "<span class='math'>&Delta;H&deg; = [ "+F[4]+"(&minus;393.5) + "+F[5]+"(&minus;285.8) ] &minus; [ ("+mm(F[2],2)+") + 0 ]</span>",
+        "<span class='math'>= [ "+(F[4]*-393.5).toFixed(1)+" + "+(F[5]*-285.8).toFixed(1)+" ] + "+mm(-F[2],2)+"</span>",
+        "<span class='math'>= "+prod.toFixed(1)+" + "+mm(-F[2],2)+" = "+sf(dH,4)+" kJ</span>"],
+      ans:"&Delta;H&deg; = "+sf(dH,4)+" kJ",
+      note:""};},
+
+    // 20 · solve for an unknown ΔHf
+    function(){var dHrxn=ri(1700,1850)/10,CaO=-635.5,CO2=-393.5,x=(CaO+CO2)-dHrxn;return{
+      label:"solving for an unknown &Delta;H&deg;<sub>f</sub>",
+      body:"The decomposition <span class='chem'>CaCO&#8323;(s) &rarr; CaO(s) + CO&#8322;(g)</span> has &Delta;H&deg; = <b>"+pm(dHrxn,1)+" kJ</b>. Using &Delta;H&deg;<sub>f</sub>(CaO) = &minus;635.5 and &Delta;H&deg;<sub>f</sub>(CO&#8322;) = &minus;393.5 kJ/mol, find &Delta;H&deg;<sub>f</sub> of CaCO&#8323;(s).",
+      extra:"",
+      steps:[
+        "<p class='step'><b>Set up the formation equation</b> and solve for the unknown.</p>",
+        "<span class='math'>&Delta;H&deg; = [&Delta;H&deg;<sub>f</sub>(CaO) + &Delta;H&deg;<sub>f</sub>(CO&#8322;)] &minus; &Delta;H&deg;<sub>f</sub>(CaCO&#8323;)</span>",
+        "<span class='math'>"+pm(dHrxn,1)+" = [(&minus;635.5) + (&minus;393.5)] &minus; &Delta;H&deg;<sub>f</sub>(CaCO&#8323;)</span>",
+        "<span class='math'>"+pm(dHrxn,1)+" = &minus;1029.0 &minus; &Delta;H&deg;<sub>f</sub>(CaCO&#8323;)</span>",
+        "<span class='math'>&Delta;H&deg;<sub>f</sub>(CaCO&#8323;) = &minus;1029.0 &minus; "+dHrxn.toFixed(1)+" = "+mm(x,1)+" kJ/mol</span>"],
+      ans:"&Delta;H&deg;<sub>f</sub>(CaCO&#8323;) = "+mm(x,1)+" kJ/mol",
+      note:""};}
+  ];
+
+  // ---------- render ----------
+  function build(c,idx){
+    var g=GENS[idx]();
+    c.innerHTML=
+      "<div class='qnum'>PROBLEM "+(idx+1)+(g.label?" · "+g.label:"")+"</div>"+
+      "<div class='qbody'>"+g.body+"</div>"+
+      (g.extra||"")+
+      "<div class='reveal'><div class='btnrow'><button class='showbtn'>Show solution</button>"+
+      "<button class='rerollbtn' title='New numbers'>↻ new numbers</button></div>"+
+      "<div class='sol'><h5>Solution</h5>"+g.steps.join("")+
+      "<span class='ans'>"+g.ans+"</span>"+(g.note?"<p class='note'>"+g.note+"</p>":"")+"</div></div>";
+    wire(c,idx);
+  }
+  function wire(c,idx){
+    var btn=c.querySelector(".showbtn"),sol=c.querySelector(".sol"),rr=c.querySelector(".rerollbtn");
+    btn.addEventListener("click",function(){var o=sol.classList.toggle("open");btn.textContent=o?"Hide solution":"Show solution";});
+    rr.addEventListener("click",function(){var open=sol.classList.contains("open");build(c,idx);
+      if(open){var ns=c.querySelector(".sol");ns.classList.add("open");c.querySelector(".showbtn").textContent="Hide solution";}});
+  }
+  var conts=Array.prototype.slice.call(document.querySelectorAll(".q"));
+  conts.forEach(function(c){build(c,parseInt(c.getAttribute("data-i"),10));});
+
+  document.getElementById("newAll").addEventListener("click",function(){
+    conts.forEach(function(c){build(c,parseInt(c.getAttribute("data-i"),10));});
+    window.scrollTo({top:0,behavior:"smooth"});
+  });
+  document.getElementById("openAll").addEventListener("click",function(){
+    document.querySelectorAll(".sol").forEach(function(s){s.classList.add("open");});
+    document.querySelectorAll(".showbtn").forEach(function(b){b.textContent="Hide solution";});
+  });
+  document.getElementById("closeAll").addEventListener("click",function(){
+    document.querySelectorAll(".sol").forEach(function(s){s.classList.remove("open");});
+    document.querySelectorAll(".showbtn").forEach(function(b){b.textContent="Show solution";});
+  });
+  document.getElementById("printBtn").addEventListener("click",function(){
+    document.querySelectorAll(".sol").forEach(function(s){s.classList.add("open");});
+    window.print();
+  });
+})();
+</script>
+</body>
+</html>
